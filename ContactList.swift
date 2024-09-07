@@ -52,7 +52,7 @@ struct ContactList: View {
             Alert(
                 title: Text("Are you sure?"),
                 primaryButton: .destructive(Text("Yes"), action: {
-                    archive(contact)                     // Kaller archive-funksjonen når brukeren bekrefter
+                    archive(contact)                     
                 }),
                 secondaryButton: .cancel()
             )
@@ -64,10 +64,10 @@ struct ContactList: View {
     // Funksjon som flytter kontakt til listen over arkiverte kontakter
     private func archive(_ contact: Contact?) {
         guard let contact = contact else { return }
-        archivedContacts.append(contact)                // Legger til kontakt i arkiv
+        archivedContacts.append(contact)
         print("Archived contact: \(contact.name)")
         if let foundIndex = contacts.firstIndex(where: { $0.id == contact.id }) {
-            contacts.remove(at: foundIndex)             // Fjerner kontakten fra hovedlisten
+            contacts.remove(at: foundIndex)
         }
     }
 }

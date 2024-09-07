@@ -74,18 +74,13 @@ struct ArchivedContacts: View {
         }
     }
 }
+    
 
-
-//    Display a list of the archived contacts in this third tab  x
-//    You’ll need to store the contacts and archivedContacts at the highest level, as variables of Forelesning3App to do   so. Remember about @State vs @Binding  x
-//    You can reuse the existing cells for now  x
-//    Create a new cell struct that will only list the name of the contact in this archived list  x
-//    Add a swipe action to restore the archived contact
-//    Add a swipe action to delete the archived contact  x
-//    When triggered, this should first display an alert asking for confirmation (or cancellation) of deletion  x
+// ---- Alternativ ----
 
 
 /*
+ 
  // Funksjon som flytter kontakt tilbake til hovedlisten
  private func restore(_ contact: Contact?) {
      guard let contact = contact else { return }
@@ -101,5 +96,7 @@ struct ArchivedContacts: View {
      if let foundIndex = archivedContacts.firstIndex(where: { $0.id == contact.id }) {
          archivedContacts.remove(at: foundIndex)
      }
+ }
+
  }
  */
