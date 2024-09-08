@@ -3,11 +3,11 @@ import SwiftUI
 struct ContactList: View {
 
     @Binding var contacts: [Contact]
-    @Binding var archivedContacts: [Contact]
+    @Binding var archivedContacts: [ArchivedContact]
+    @State var contactToBeArchivedOption: Contact?
     @State var presentSettingsSheet = false
     @State var displayOnlyFavoriteContacts = false
     @State var presentAlert = false
-    @State var contactToBeArchivedOption: Contact?
 
     var body: some View {
         List {
@@ -52,7 +52,7 @@ struct ContactList: View {
             Alert(
                 title: Text("Are you sure?"),
                 primaryButton: .destructive(Text("Yes"), action: {
-                    archive(contact)                     
+                    archive(contact)
                 }),
                 secondaryButton: .cancel()
             )
@@ -61,13 +61,16 @@ struct ContactList: View {
 
     // MARK: - Private
     
-    // Funksjon som flytter kontakt til listen over arkiverte kontakter
-     private func archive(_ contact: Contact?) {
-         guard let contact = contact else { return }
-         archivedContacts.append(contact)
-         print("Archived contact: \(contact.name)")
-         if let foundIndex = contacts.firstIndex(where: { $0.id == contact.id }) {
-             contacts.remove(at: foundIndex)
-         }
-     }
+    private func archive(_ contact: Contact?) {
+        guard let contact = contact else { return }
+
+        let archivedContact = ArchivedContact(contact: contact, archivedAt: Date())  // Opprett ArchivedContact
+        archivedContacts.append(archivedContact)  // Legg til ArchivedContact i listen
+        print("Archived contact: \(contact.name) with ID: \(contact.id)")
+
+        if let foundIndex = contacts.firstIndex(where: { $0.id == contact.id }) {
+            contacts.remove(at: foundIndex)  // Fjern kontakten fra hovedlisten
+        }
+    }
 }
+

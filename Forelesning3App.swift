@@ -4,13 +4,13 @@ import SwiftUI
 struct Forelesning3App: App {
     
     @State private var contacts: [Contact] = Contact.mocks
-    @State private var archivedContacts: [Contact] = []
+    @State private var archivedContacts: [ArchivedContact] = []
 
     var body: some Scene {
         WindowGroup {
             TabView {
                 NavigationStack {
-                    ContactList(contacts: $contacts, archivedContacts: $archivedContacts) // Sender bindinger til ContactList
+                    ContactList(contacts: $contacts, archivedContacts: $archivedContacts)
                 }
                 .tabItem { Text("First") }
                 
@@ -18,10 +18,11 @@ struct Forelesning3App: App {
                     .tabItem { Text("Second") }
                 
                 NavigationStack {
-                    ArchivedContacts(archivedContacts: $archivedContacts, contacts: $contacts) // Sender bindinger til ArchivedContacts
+                    ArchivedContacts(archivedContacts: $archivedContacts, contacts: $contacts)
                 }
                 .tabItem { Text("Third")}
             }
         }
     }
 }
+
