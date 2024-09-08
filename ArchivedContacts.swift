@@ -62,7 +62,7 @@ struct ArchivedContacts: View {
             
             switch action {
             case .restore:
-                contacts.append(contact)  // Flytt til hovedlisten
+                contacts.append(contact)
                 print("moved to contacts: \(contact.name)")
                 archivedContacts.remove(at: foundIndex)
                 print("removed from archive: \(contact.name)")

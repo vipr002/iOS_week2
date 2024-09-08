@@ -21,9 +21,8 @@ struct PickerView: View {
                 }
             }
             .pickerStyle(WheelPickerStyle()) // ønsket PickerStyle
-            .frame(height: 150) // høyden på Picker
-
-            Text("Selected symbol: \(selectedSymbol.rawValue)") // Viser valgt symbol
+            .frame(height: 150)
+            Text("Selected symbol: \(selectedSymbol.rawValue)")
         }
         .background()   // eventuelt endre farge her (.red)
     }

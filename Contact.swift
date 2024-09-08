@@ -1,10 +1,3 @@
-//
-//  Contact.swift
-//  Forelesning3
-//
-//  Created by Edouard Siegel on 02/09/2024.
-//
-
 
 import Foundation
 
