@@ -19,6 +19,5 @@ struct ContactDetail: View {
             Image(systemName: contact.isFavorite ? "star.fill" : "star")
         }
     }
-
 }
 

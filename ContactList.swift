@@ -62,10 +62,10 @@ struct ContactList: View {
     // MARK: - Private
     
     private func archive(_ contact: Contact?) {
-        guard let contact = contact else { return }
+        guard let contact else { return }
 
-        let archivedContact = ArchivedContact(contact: contact, archivedAt: Date())  // Opprett ArchivedContact
-        archivedContacts.append(archivedContact)  // Legg til ArchivedContact i listen
+        let archivedContact = ArchivedContact(contact: contact, archivedAt: Date())
+        archivedContacts.append(archivedContact)
         print("Archived contact: \(contact.name) with ID: \(contact.id)")
 
         if let foundIndex = contacts.firstIndex(where: { $0.id == contact.id }) {
@@ -73,4 +73,3 @@ struct ContactList: View {
         }
     }
 }
-

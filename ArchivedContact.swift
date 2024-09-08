@@ -8,13 +8,7 @@
 import Foundation
 
 struct ArchivedContact: Identifiable {
-    let id = UUID()
+    var id: UUID { contact.id }  // contact.id som identifikator
     let contact: Contact
     let archivedAt: Date
-}
-
-private func formatDate(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd HH:mm"
-    return formatter.string(from: date)
 }

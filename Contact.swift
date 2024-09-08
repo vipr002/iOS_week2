@@ -9,6 +9,7 @@ struct Contact: Identifiable {
     let phoneNumber: String
     var isFavorite: Bool = false
     var isArchived: Bool = false
+    
 
     static let mocks = [
         Contact(
@@ -37,4 +38,10 @@ struct Contact: Identifiable {
             phoneNumber: "989 84 213"
         )
     ]
+
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return formatter.string(from: date)
+    }
 }

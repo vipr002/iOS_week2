@@ -44,7 +44,7 @@ struct ArchivedContacts: View {
             Alert(
                 title: Text("Are you sure you want to delete \(contact.name)?"),
                 primaryButton: .destructive(Text("Yes"), action: {
-                    print("Delete confirmed for contact: \(contact.name)")  
+                    print("Delete confirmed for contact: \(contact.name)")
                     delete(contact)
                 }),
                 secondaryButton: .cancel()
@@ -52,62 +52,42 @@ struct ArchivedContacts: View {
         }
     }
     
-    // Funksjon for å gjenopprette kontakt fra arkivet
-    private func restore(_ contact: Contact?) {
-        guard let contact = contact else {
-            print("Contact is nil in restore")
-            return
-        }
-
-        print("Restore function called for contact: \(contact.name)")
-
-        contacts.append(contact)
-        print("Restored contact: \(contact.name)")
-        print("Contacts after restore: \(contacts.map { $0.name })")
-
-        delete(contact)
-        print("Archived contacts after restore: \(archivedContacts.map { $0.contact.name })")
-    }
-    
-    // Funksjon for å slette kontakt fra arkivet
-    private func delete(_ contact: Contact?) {
-        guard let contact = contact else {
-            print("Contact is nil")
-            return
-        }
-        // Finn indeksen til kontakten i archivedContacts
-        if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
-            archivedContacts.remove(at: foundIndex)
-            print("Deleted contact: \(contact.name)")
-            print("Archived contacts after delete: \(archivedContacts.map { $0.contact.name })")
-        } else {
-            print("Could not find contact to delete in archivedContacts")
-        }
-    }
-}
-
-   
-    /*
     enum ContactAction {
         case restore
         case delete
     }
-    
-    private func handleContact(_ contact: Contact?, action: ContactAction) {
+
+    func handleContact(_ contact: Contact?, action: ContactAction) {
         guard let contact = contact else {
             print("Contact is nil")
             return
         }
-
+        
         switch action {
         case .restore:
-            restoreContact(contact)
+            restore(contact)
         case .delete:
-            deleteContact(contact)
+            delete(contact)
         }
     }
-*/
 
+    
+   private func restore(_ contact: Contact) {
+       if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
+            let archivedContact = archivedContacts[foundIndex]
+            contacts.append(archivedContact.contact)
+            archivedContacts.remove(at: foundIndex)
+        }
+    }
+
+
+    private func delete(_ contact: Contact) {
+        if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
+            archivedContacts.remove(at: foundIndex)
+        }
+    }
+}
+   
     
  /*   private func handleContact(_ contact: Contact?, action: ContactAction) {
         guard let contact = contact else {
@@ -166,24 +146,3 @@ struct ArchivedContacts: View {
         }
     }
     */
-
-
-  /*  private func handleContact(_ contact: Contact?, action: ContactAction) {
-        guard let contact = contact else { return }
-        
-        switch action {
-        case .restore:
-            if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
-                let archivedContact = archivedContacts[foundIndex] // Hent `ArchivedContact`
-                contacts.append(archivedContact.contact)
-                archivedContacts.remove(at: foundIndex)
-                print("Moved to contacts: \(archivedContact.contact.name)")
-            }
-            
-        case .delete:
-            if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
-                archivedContacts.remove(at: foundIndex)
-                print("Removed from archive: \(contact.name)")
-            }
-        }
-    } */
