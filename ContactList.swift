@@ -62,12 +62,12 @@ struct ContactList: View {
     // MARK: - Private
     
     // Funksjon som flytter kontakt til listen over arkiverte kontakter
-    private func archive(_ contact: Contact?) {
-        guard let contact = contact else { return }
-        archivedContacts.append(contact)
-        print("Archived contact: \(contact.name)")
-        if let foundIndex = contacts.firstIndex(where: { $0.id == contact.id }) {
-            contacts.remove(at: foundIndex)
-        }
-    }
+     private func archive(_ contact: Contact?) {
+         guard let contact = contact else { return }
+         archivedContacts.append(contact)
+         print("Archived contact: \(contact.name)")
+         if let foundIndex = contacts.firstIndex(where: { $0.id == contact.id }) {
+             contacts.remove(at: foundIndex)
+         }
+     }
 }

@@ -76,8 +76,7 @@ struct ArchivedContacts: View {
 }
     
 
-// ---- Alternativ ----
-
+// ---- Alternativ til handleContact ----
 
 /*
  
@@ -97,6 +96,5 @@ struct ArchivedContacts: View {
          archivedContacts.remove(at: foundIndex)
      }
  }
-
- }
+}
  */
