@@ -72,11 +72,21 @@ struct ArchivedContacts: View {
     }
 
     
-   private func restore(_ contact: Contact) {
-       if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
+    private func restore(_ contact: Contact) {
+        // Finn indeksen til den arkiverte kontakten
+        if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
+            // Hent den arkiverte kontakten fra listen
             let archivedContact = archivedContacts[foundIndex]
+            
+            // Legg til kontakten tilbake i hovedlisten
             contacts.append(archivedContact.contact)
+            
+            // Fjern kontakten fra arkivlisten
             archivedContacts.remove(at: foundIndex)
+            
+            print("Restored contact: \(archivedContact.contact.name)")
+        } else {
+            print("Contact not found in archive")
         }
     }
 
