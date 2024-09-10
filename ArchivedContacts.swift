@@ -8,6 +8,13 @@ struct ArchivedContacts: View {
     @State private var alertAction: AlertAction?
     @State private var selectedContact: Contact?
     
+    
+    enum AlertAction {
+        case restore(Contact)
+        case delete(Contact)
+    }
+    
+    
     var body: some View {
         List {
             if archivedContacts.isEmpty {
@@ -67,11 +74,7 @@ struct ArchivedContacts: View {
         }
     }
     
-    enum AlertAction {
-        case restore(Contact)
-        case delete(Contact)
-    }
-    
+
     
     private func restore(_ contact: Contact) {
         if let foundIndex = archivedContacts.firstIndex(where: { $0.contact.id == contact.id }) {
